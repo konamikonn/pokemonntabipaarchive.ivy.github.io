@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>旅パ詳細</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h1>旅パ詳細</h1>
+<div id="partyDetail"></div>
+
+<script>
+const urlParams = new URLSearchParams(location.search);
+const id = Number(urlParams.get('id'));
+const parties = JSON.parse(localStorage.getItem('pokemonParties') || '[]');
+const p = parties.find(p => p.id === id);
+const container = document.getElementById('partyDetail');
+
+if (!p) {
+  container.innerHTML = '<p>旅パが見つかりません</p>';
+} else {
+  let html = `<div class="party-card"><div class="title">${p.title || '（タイトルなし）'}</div>`;
+  p.party.filter(pk => pk.name).forEach(pk => {
+    html += `
+      <div class="pokemon-detail">
+        <div class="pokemon-name">${pk.nickname ? `${pk.nickname}（${pk.name}）` : pk.name}</div>
+        <div class="info">
+${pk.level ? `Lv.${pk.level}\n` : ''}\
+${pk.nature ? `性格：${pk.nature}\n` : ''}\
+${pk.item ? `持ち物：${pk.item}\n` : ''}\
+${pk.ability ? `特性：${pk.ability}\n` : ''}\
+${pk.moves ? `技：${pk.moves}\n` : ''}\
+${pk.comment ? `コメント：${pk.comment}` : ''}
+        </div>
+      </div>
+    `;
+  });
+  html += `</div>`;
+  container.innerHTML = html;
+}
+</script>
+</body>
+</html>

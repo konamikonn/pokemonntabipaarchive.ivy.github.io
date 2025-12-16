@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>旅パ一覧</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<button class="back" onclick="goCreate()">＋ 新しく作る</button>
+<h1>保存した旅パ一覧</h1>
+<div id="list"></div>
+
+<script>
+const list = document.getElementById('list');
+const parties = JSON.parse(localStorage.getItem('pokemonParties') || '[]');
+
+if (parties.length === 0) {
+  list.innerHTML = '<p style="text-align:center;">旅パがまだありません</p>';
+}
+
+parties.forEach(p => {
+  const shareUrl = `${location.origin}${location.pathname.replace('list.html','')}view.html?id=${p.id}`;
+  const shareText = encodeURIComponent(`旅パ「${p.title || 'タイトルなし'}」`);
+
+  const div = document.createElement('div');
+  div.className = 'party-card';
+
+  let html = `<div class="title">${p.title || '（タイトルなし）'}</div>`;
+  p.party.filter(pk => pk.name).forEach(pk => {
+    html += `
+      <div class="pokemon">
+        <div class="pokemon-name">${pk.nickname ? `${pk.nickname}（${pk.name}）` : pk.name}</div>
+        <div class="info">
+${pk.level ? `Lv.${pk.level}\n` : ''}\
+${pk.nature ? `性格：${pk.nature}\n` : ''}\
+${pk.item ? `持ち物：${pk.item}\n` : ''}\
+${pk.ability ? `特性：${pk.ability}\n` : ''}\
+${pk.moves ? `技：${pk.moves}\n` : ''}\
+${pk.comment ? `コメント：${pk.comment}` : ''}
+        </div>
+      </div>
+    `;
+  });
+
+  html += `
+    <div class="actions">
+      <button class="edit" onclick="editParty(${p.id})">編集</button>
+      <button class="delete" onclick="deleteParty(${p.id})">削除</button>
+      <button class="share" onclick="copyUrl('${shareUrl}')">URLコピー</button>
+      <a href="https://twitter.com/intent/tweet?text=${shareText}&url=${encodeURIComponent(shareUrl)}" target="_blank">
+        <button class="share">X投稿</button>
+      </a>
+    </div>
+  `;
+  div.innerHTML = html;
+  list.appendChild(div);
+});
+
+function editParty(id) {
+  const party = parties.find(p => p.id === id);
+  localStorage.setItem('editingParty', JSON.stringify(party));
+  location.href = 'index.html';
+}
+
+function deleteParty(id) {
+  if (!confirm('削除しますか？')) return;
+  localStorage.setItem(
+    'pokemonParties',
+    JSON.stringify(parties.filter(p => p.id !== id))
+  );
+  location.reload();
+}
+
+function goCreate() { location.href = 'index.html'; }
+
+function copyUrl(url) {
+  navigator.clipboard.writeText(url);
+  alert('URLをコピーしました');
+}
+</script>
+</body>
+</html>

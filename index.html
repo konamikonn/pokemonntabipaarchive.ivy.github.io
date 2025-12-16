@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <title>ポケモン旅パアーカイブ</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>ポケモン旅パアーカイブ</h1>
+
+<h2>タイトル</h2>
+<input id="partyTitle" placeholder="旅パのタイトルを入力">
+
+<h2>作品・バージョン選択</h2>
+<select id="versionSelect">
+  <option value="">選択してください</option>
+</select>
+
+<h2>旅パ登録</h2>
+<div class="party" id="partyArea"></div>
+
+<button onclick="saveParty()">保存</button>
+<button class="back" onclick="goList()">一覧を見る</button>
+
+<script>
+const PARTY_SIZE = 6;
+const partyArea = document.getElementById('partyArea');
+const versionSelect = document.getElementById('versionSelect');
+const partyTitle = document.getElementById('partyTitle');
+
+/* 作品・バージョン読み込み */
+fetch('pokemon_games.json')
+  .then(r => r.json())
+  .then(data => {
+    data.generations.forEach(gen => {
+      gen.games.forEach(game => {
+        game.versions.forEach(v => {
+          const opt = document.createElement('option');
+          opt.value = v.version_id;
+          opt.textContent = `${gen.generation_name} / ${v.version_name}`;
+          versionSelect.appendChild(opt);
+        });
+      });
+    });
+  });
+
+const party = Array.from({ length: PARTY_SIZE }, () => ({
+  name: '', nickname: '', level: '', item: '', ability: '', moves: '', nature: '', comment: ''
+}));
+
+function renderParty() {
+  partyArea.innerHTML = '';
+  party.forEach((p, i) => {
+    const div = document.createElement('div');
+    div.className = 'pokemon';
+    div.innerHTML = `
+      <h3>ポケモン${i + 1}</h3>
+      <input placeholder="ポケモン名（必須）" oninput="party[${i}].name=this.value">
+      <input placeholder="ニックネーム" oninput="party[${i}].nickname=this.value">
+      <div class="row">
+        <input placeholder="レベル" oninput="party[${i}].level=this.value">
+        <input placeholder="性格" oninput="party[${i}].nature=this.value">
+      </div>
+      <input placeholder="持ち物" oninput="party[${i}].item=this.value">
+      <input placeholder="特性" oninput="party[${i}].ability=this.value">
+      <input placeholder="技（例：10まんボルト/かみなり）" oninput="party[${i}].moves=this.value">
+      <textarea placeholder="一言コメント（思い出・役割など）"
+        oninput="party[${i}].comment=this.value"></textarea>
+    `;
+    partyArea.appendChild(div);
+  });
+}
+
+function saveParty() {
+  const versionId = versionSelect.value;
+  const title = partyTitle.value.trim();
+  if (!title) { alert('タイトルを入力してください'); return; }
+  if (!versionId) { alert('作品・バージョンを選択してください'); return; }
+  if (!party.some(p => p.name.trim())) { alert('最低1体はポケモン名を入力してください'); return; }
+
+  const list = JSON.parse(localStorage.getItem('pokemonParties') || '[]');
+  const editing = JSON.parse(localStorage.getItem('editingParty') || 'null');
+  if (editing) {
+    editing.version_id = Number(versionId);
+    editing.title = title;
+    editing.party = party;
+    list.splice(list.findIndex(p => p.id===editing.id), 1, editing);
+    localStorage.removeItem('editingParty');
+  } else {
+    list.push({ id: Date.now(), version_id: Number(versionId), title, party });
+  }
+  localStorage.setItem('pokemonParties', JSON.stringify(list));
+  alert('保存しました');
+}
+
+function goList() {
+  localStorage.removeItem('editingParty');
+  location.href = 'list.html';
+}
+
+/* 編集用データの反映 */
+const editingParty = JSON.parse(localStorage.getItem('editingParty') || 'null');
+if (editingParty) {
+  partyTitle.value = editingParty.title || '';
+  editingParty.party.forEach((p, i) => { Object.assign(party[i], p); });
+}
+renderParty();
+</script>
+</body>
+</html>

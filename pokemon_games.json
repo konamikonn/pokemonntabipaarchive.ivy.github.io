@@ -1,0 +1,249 @@
+{
+  "generations": [
+    {
+      "generation_id": 1,
+      "generation_name": "第1世代",
+      "games": [
+        {
+          "game_id": 101,
+          "game_name": "赤・緑",
+          "series_type": "main",
+          "versions": [
+            { "version_id": 1011, "version_name": "赤" },
+            { "version_id": 1012, "version_name": "緑" }
+          ]
+        },
+        {
+          "game_id": 102,
+          "game_name": "青",
+          "series_type": "main",
+          "versions": [
+            { "version_id": 1021, "version_name": "青" }
+          ]
+        },
+        {
+          "game_id": 103,
+          "game_name": "ピカチュウ",
+          "series_type": "main",
+          "versions": [
+            { "version_id": 1031, "version_name": "ピカチュウ" }
+          ]
+        }
+      ]
+    },
+    {
+      "generation_id": 2,
+      "generation_name": "第2世代",
+      "games": [
+        {
+          "game_id": 201,
+          "game_name": "金・銀",
+          "series_type": "main",
+          "versions": [
+            { "version_id": 2011, "version_name": "金" },
+            { "version_id": 2012, "version_name": "銀" }
+          ]
+        },
+        {
+          "game_id": 202,
+          "game_name": "クリスタル",
+          "series_type": "main",
+          "versions": [
+            { "version_id": 2021, "version_name": "クリスタル" }
+          ]
+        }
+      ]
+    },
+    {
+      "generation_id": 3,
+      "generation_name": "第3世代",
+      "games": [
+        {
+          "game_id": 301,
+          "game_name": "ルビー・サファイア",
+          "series_type": "main",
+          "versions": [
+            { "version_id": 3011, "version_name": "ルビー" },
+            { "version_id": 3012, "version_name": "サファイア" }
+          ]
+        },
+        {
+          "game_id": 302,
+          "game_name": "エメラルド",
+          "series_type": "main",
+          "versions": [
+            { "version_id": 3021, "version_name": "エメラルド" }
+          ]
+        },
+        {
+          "game_id": 303,
+          "game_name": "ファイアレッド・リーフグリーン",
+          "series_type": "remake",
+          "versions": [
+            { "version_id": 3031, "version_name": "ファイアレッド" },
+            { "version_id": 3032, "version_name": "リーフグリーン" }
+          ]
+        }
+      ]
+    },
+    {
+      "generation_id": 4,
+      "generation_name": "第4世代",
+      "games": [
+        {
+          "game_id": 401,
+          "game_name": "ダイヤモンド・パール",
+          "series_type": "main",
+          "versions": [
+            { "version_id": 4011, "version_name": "ダイヤモンド" },
+            { "version_id": 4012, "version_name": "パール" }
+          ]
+        },
+        {
+          "game_id": 402,
+          "game_name": "プラチナ",
+          "series_type": "main",
+          "versions": [
+            { "version_id": 4021, "version_name": "プラチナ" }
+          ]
+        },
+        {
+          "game_id": 403,
+          "game_name": "ハートゴールド・ソウルシルバー",
+          "series_type": "remake",
+          "versions": [
+            { "version_id": 4031, "version_name": "ハートゴールド" },
+            { "version_id": 4032, "version_name": "ソウルシルバー" }
+          ]
+        }
+      ]
+    },
+    {
+      "generation_id": 5,
+      "generation_name": "第5世代",
+      "games": [
+        {
+          "game_id": 501,
+          "game_name": "ブラック・ホワイト",
+          "series_type": "main",
+          "versions": [
+            { "version_id": 5011, "version_name": "ブラック" },
+            { "version_id": 5012, "version_name": "ホワイト" }
+          ]
+        },
+        {
+          "game_id": 502,
+          "game_name": "ブラック2・ホワイト2",
+          "series_type": "main",
+          "versions": [
+            { "version_id": 5021, "version_name": "ブラック2" },
+            { "version_id": 5022, "version_name": "ホワイト2" }
+          ]
+        }
+      ]
+    },
+    {
+      "generation_id": 6,
+      "generation_name": "第6世代",
+      "games": [
+        {
+          "game_id": 601,
+          "game_name": "X・Y",
+          "series_type": "main",
+          "versions": [
+            { "version_id": 6011, "version_name": "X" },
+            { "version_id": 6012, "version_name": "Y" }
+          ]
+        },
+        {
+          "game_id": 602,
+          "game_name": "オメガルビー・アルファサファイア",
+          "series_type": "remake",
+          "versions": [
+            { "version_id": 6021, "version_name": "オメガルビー" },
+            { "version_id": 6022, "version_name": "アルファサファイア" }
+          ]
+        }
+      ]
+    },
+    {
+      "generation_id": 7,
+      "generation_name": "第7世代",
+      "games": [
+        {
+          "game_id": 701,
+          "game_name": "サン・ムーン",
+          "series_type": "main",
+          "versions": [
+            { "version_id": 7011, "version_name": "サン" },
+            { "version_id": 7012, "version_name": "ムーン" }
+          ]
+        },
+        {
+          "game_id": 702,
+          "game_name": "ウルトラサン・ウルトラムーン",
+          "series_type": "main",
+          "versions": [
+            { "version_id": 7021, "version_name": "ウルトラサン" },
+            { "version_id": 7022, "version_name": "ウルトラムーン" }
+          ]
+        }
+      ]
+    },
+    {
+      "generation_id": 8,
+      "generation_name": "第8世代",
+      "games": [
+        {
+          "game_id": 801,
+          "game_name": "ソード・シールド",
+          "series_type": "main",
+          "versions": [
+            { "version_id": 8011, "version_name": "ソード" },
+            { "version_id": 8012, "version_name": "シールド" }
+          ]
+        },
+        {
+          "game_id": 802,
+          "game_name": "ブリリアントダイヤモンド・シャイニングパール",
+          "series_type": "remake",
+          "versions": [
+            { "version_id": 8021, "version_name": "ブリリアントダイヤモンド" },
+            { "version_id": 8022, "version_name": "シャイニングパール" }
+          ]
+        },
+        {
+          "game_id": 803,
+          "game_name": "LEGENDS アルセウス",
+          "series_type": "legends",
+          "versions": [
+            { "version_id": 8031, "version_name": "アルセウス" }
+          ]
+        }
+      ]
+    },
+    {
+      "generation_id": 9,
+      "generation_name": "第9世代",
+      "games": [
+        {
+          "game_id": 901,
+          "game_name": "スカーレット・バイオレット",
+          "series_type": "main",
+          "versions": [
+            { "version_id": 9011, "version_name": "スカーレット" },
+            { "version_id": 9012, "version_name": "バイオレット" }
+          ]
+        },
+        {
+          "game_id": 902,
+          "game_name": "LEGENDS Z-A",
+          "series_type": "legends",
+          "versions": [
+            { "version_id": 9021, "version_name": "Z-A" }
+          ]
+        }
+      ]
+    }
+  ]
+}
